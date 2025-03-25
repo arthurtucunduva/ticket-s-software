@@ -1,0 +1,53 @@
+## desenvolver um software que calcule o preço a ser pago por bilhete
+## apresentar o custo base unitário, o desconto em função do número de bilhetes, o desconto por idade e o valor final a ser pago
+
+
+idade = int(input('DIGITE A IDADE:                      '))     # ler a idade
+bilhetes = int(input('DIGITE A QUANTIDADE DE BILHETES:  '))     # ler o número de bilhetes pagos
+distância = int(input('DIGITE A DISTÂNCIA PERCORRIDA:   '))     # ler a distância que percorreu
+cpqm = int(input('DIGITE O CUSTO POR QUILÔMETRO:        '))     # ler o custoporquilometro
+acento = str(input('DIGITE O ACENTO: ')).upper()                # ler o acento                                       
+cbu = distância * cpqm                                          # calcular o valor bruto
+if acento == 'BÁSICO':                                          # calcular o valor do acréscimo do acento 
+  mais = 0
+elif acento == 'PLANETÁRIO':
+  mais = cbu * 0.3
+elif acento == 'ESTELAR':
+  mais = cbu * 0.6
+else:
+  mais = cbu * 1.0
+valorsubparcial = cbu + mais
+                                                           
+if bilhetes == 1:
+  descbilhetes = 0
+if 1 <= bilhetes <= 5:                                            # apresentar as condições de desconto de bilhetes
+  descbilhetes = valorsubparcial *0.05
+  
+elif 5 < bilhetes <= 10:
+  descbilhetes = valorsubparcial * 0.15
+  
+else:
+  descbilhetes = valorsubparcial * 0.30
+
+valorparcial = valorsubparcial - descbilhetes                                # calcular valor parcial 
+if 0 <= idade <= 5:                                              # apresentar condições de desconto de idade
+  descidade = valorparcial * 0.20
+   
+elif 5 < idade <= 10:
+  descidade = valorparcial * 0.15
+  
+elif 10 < idade <= 16:
+  descidade = valorparcial * 0.10
+  
+elif 16 < idade <= 59:
+  descidade = 0
+else: #idade maior que 60
+  descidade = valorparcial * 0.30
+valortotal = valorparcial - descidade                           # calcular valor total  
+                                                                # imprimir valores e descontos
+print(f'VALOR BRUTO:          {cbu}')
+print(f'VALOR ADICIONA DO ACENTO: {mais}')
+print(f'DESCONTO DE BILHETES: {descbilhetes}')
+print(f'DESCONTO DE IDADE:    {descidade}')
+print(f'VALOR TOTAL:          {valortotal}')
+
